@@ -69,16 +69,16 @@ fs
 		if (estimated) {
 		    stats[task].estimated = parseInt(estimated[0].replace('h',''));
 		}
-		if (data[9].match(/#status/)) {
+		if (data[11].match(/#status/)) {
 		    status = data[11];
 		}
-		if (data[9].match(/#priority/)) {
+		if (data[11].match(/#priority/)) {
 		    priority = data[11].replace('#priority ', '');
 		}
-		if (data[9].match(/#notes/)) {
+		if (data[11].match(/#notes/)) {
 		    notes = data[11].replace('#notes', '');
 		}
-		if (data[9].match(/#move/)) {
+		if (data[11].match(/#move/)) {
 		    stats[task].move = data[11].replace('#move ', '');
 		}
 		if (status) {
@@ -88,7 +88,7 @@ fs
 		    if (stats[task].notes) { 
 			stats[task].notes += '\n\n' + `**(${time}):** ` + notes;
 		    } else {
-			stats[task].notes = `Notes (${data[5].match(/[0-9]+\/[0-9]+\/[0-9]+/)})\n==============\n\n` + `**(${time}):** ` + notes;
+			stats[task].notes = `Notes (${data[4].match(/[0-9]+\/[0-9]+\/[0-9]+/)})\n==============\n\n` + `**(${time}):** ` + notes;
 		    }
 		}
 	    }
