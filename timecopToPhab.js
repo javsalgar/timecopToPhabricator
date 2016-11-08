@@ -52,14 +52,14 @@ fs
 	let status;
 	let priority;
 	let notes;
-	let time = data[3].match(/[0-9]+:[0-9]+/);
+	let time = data[5].match(/[0-9]+:[0-9]+/);
 	if (timeFrom <= time) {	    
 	    if (task) {
 		task = task[0];
 		if ( (excludeTask === task) || (onlyOneTask && !(onlyTask === task))) {
 		    return;
 		}
-		let seconds = parseInt(data[5]);
+		let seconds = parseInt(data[7]);
 		if (stats[task]) {
 		    stats[task].seconds += seconds;
 		} else {
@@ -70,16 +70,16 @@ fs
 		    stats[task].estimated = parseInt(estimated[0].replace('h',''));
 		}
 		if (data[9].match(/#status/)) {
-		    status = data[9];
+		    status = data[11];
 		}
 		if (data[9].match(/#priority/)) {
-		    priority = data[9].replace('#priority ', '');
+		    priority = data[11].replace('#priority ', '');
 		}
 		if (data[9].match(/#notes/)) {
-		    notes = data[9].replace('#notes', '');
+		    notes = data[11].replace('#notes', '');
 		}
 		if (data[9].match(/#move/)) {
-		    stats[task].move = data[9].replace('#move ', '');
+		    stats[task].move = data[11].replace('#move ', '');
 		}
 		if (status) {
 		    stats[task].status = status;
@@ -88,7 +88,7 @@ fs
 		    if (stats[task].notes) { 
 			stats[task].notes += '\n\n' + `**(${time}):** ` + notes;
 		    } else {
-			stats[task].notes = `Notes (${data[3].match(/[0-9]+\/[0-9]+\/[0-9]+/)})\n==============\n\n` + `**(${time}):** ` + notes;
+			stats[task].notes = `Notes (${data[5].match(/[0-9]+\/[0-9]+\/[0-9]+/)})\n==============\n\n` + `**(${time}):** ` + notes;
 		    }
 		}
 	    }
