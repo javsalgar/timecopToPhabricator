@@ -167,13 +167,6 @@ fs
 			    }
 			});
 		    }
-		    
-		    if (moveTasks && stats[taskWithLetter].move) {
-			spawn('casperjs', ['movetask.js', taskWithLetter, stats[taskWithLetter].move], {
-			    detached: true,
-			    stdio: 'inherit'
-			});
-		    }		 
 		}
 	    });
 	});
